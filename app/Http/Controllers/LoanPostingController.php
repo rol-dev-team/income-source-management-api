@@ -222,8 +222,8 @@ class LoanPostingController extends Controller
 
     //             DB::raw("
     //                 CASE
-    //                     WHEN (lp.entry_type = 'loan_given' OR lp.entry_type = 'loan_taken') 
-    //                         AND l.term_in_month > 0 
+    //                     WHEN (lp.entry_type = 'loan_given' OR lp.entry_type = 'loan_taken')
+    //                         AND l.term_in_month > 0
     //                         AND lir.interest_rate > 0 THEN
     //                         FORMAT(
     //                             ( l.principal_amount * (lir.interest_rate/12/100) * POW(1 + (lir.interest_rate/12/100), l.term_in_month) )
@@ -251,12 +251,12 @@ class LoanPostingController extends Controller
 
     //             // DB::raw("
     //             //     CASE
-    //             //         WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+    //             //         WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
     //             //             DATE(CONCAT(
     //             //                 DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //             //                 LPAD(l.installment_date, 2, '0')
     //             //             ))
-    //             //         WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+    //             //         WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
     //             //             DATE(CONCAT(
     //             //                 DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //             //                 LPAD(l.installment_date, 2, '0')
@@ -273,12 +273,12 @@ class LoanPostingController extends Controller
     //                 CASE
     //         WHEN (
     //             CASE
-    //                 WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+    //                 WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
     //                     DATE(CONCAT(
     //                         DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //                         LPAD(l.installment_date, 2, '0')
     //                     ))
-    //                 WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+    //                 WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
     //                     DATE(CONCAT(
     //                         DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //                         LPAD(l.installment_date, 2, '0')
@@ -289,12 +289,12 @@ class LoanPostingController extends Controller
     //         ) > l.loan_start_date
     //         THEN (
     //             CASE
-    //                 WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+    //                 WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
     //                     DATE(CONCAT(
     //                         DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //                         LPAD(l.installment_date, 2, '0')
     //                     ))
-    //                 WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+    //                 WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
     //                     DATE(CONCAT(
     //                         DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //                         LPAD(l.installment_date, 2, '0')
@@ -347,7 +347,7 @@ class LoanPostingController extends Controller
     //                                 WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.cnt_payment, 0)
     //                                 ELSE 0
     //                             END
-    //                         ), 
+    //                         ),
     //                     0)
     //                 )
     //             , 2)
@@ -360,11 +360,11 @@ class LoanPostingController extends Controller
 
 
     //             DB::raw("
-    //         CASE 
-    //         WHEN l.term_in_month > 0 THEN 
+    //         CASE
+    //         WHEN l.term_in_month > 0 THEN
     //             FORMAT(
     //                 (
-    //                     CASE 
+    //                     CASE
     //                         WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
     //                         WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
     //                         ELSE 0
@@ -403,7 +403,7 @@ class LoanPostingController extends Controller
     //             DB::raw("
     //             FORMAT(
     //                 l.principal_amount - (
-    //                     CASE 
+    //                     CASE
     //                         WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
     //                         WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
     //                     END
@@ -545,8 +545,8 @@ class LoanPostingController extends Controller
                 'lp.status',
                 DB::raw("
                 CASE
-                    WHEN (lp.entry_type = 'loan_given' OR lp.entry_type = 'loan_taken') 
-                        AND l.term_in_month > 0 
+                    WHEN (lp.entry_type = 'loan_given' OR lp.entry_type = 'loan_taken')
+                        AND l.term_in_month > 0
                         AND lir.interest_rate > 0 THEN
                         FORMAT(
                             ( l.principal_amount * (lir.interest_rate/12/100) * POW(1 + (lir.interest_rate/12/100), l.term_in_month) )
@@ -573,12 +573,12 @@ class LoanPostingController extends Controller
                 CASE
         WHEN (
             CASE
-                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
                     ))
-                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
@@ -589,12 +589,12 @@ class LoanPostingController extends Controller
         ) > l.loan_start_date
         THEN (
             CASE
-                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
                     ))
-                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
@@ -623,7 +623,7 @@ class LoanPostingController extends Controller
                         CASE
                             WHEN lir.interest_rate > 0 THEN
                                 ( l.principal_amount * (lir.interest_rate/12/100) * POW(1 + (lir.interest_rate/12/100), l.term_in_month) )
-                                / ( POW(1 + (lir.interest_rate/12/100), l.term_in_month) - 1 )
+                                / ( POW(1 + (lir.interest_rate/12/100), l.term_in_month) - 1 ) + l.extra_charge
                             ELSE 0
                         END
                     ) *
@@ -641,7 +641,7 @@ class LoanPostingController extends Controller
                                     WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.cnt_payment, 0)
                                     ELSE 0
                                 END
-                            ), 
+                            ),
                         0)
                     )
                 , 2)
@@ -649,11 +649,11 @@ class LoanPostingController extends Controller
         END AS total_due_amount
                 "),
                 DB::raw("
-        CASE 
-        WHEN l.term_in_month > 0 THEN 
+        CASE
+        WHEN l.term_in_month > 0 THEN
             FORMAT(
                 (
-                    CASE 
+                    CASE
                         WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
                         WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
                         ELSE 0
@@ -677,7 +677,7 @@ class LoanPostingController extends Controller
                             WHEN l.term_in_month > 0 AND lir.interest_rate > 0
                                 THEN (
                                     ( l.principal_amount * (lir.interest_rate/12/100) * POW(1 + (lir.interest_rate/12/100), l.term_in_month) )
-                                    / ( POW(1 + (lir.interest_rate/12/100), l.term_in_month) - 1 )
+                                    / ( POW(1 + (lir.interest_rate/12/100), l.term_in_month) - 1 ) + l.extra_charge
                                 )
                             ELSE 0
                         END
@@ -690,7 +690,7 @@ class LoanPostingController extends Controller
                 DB::raw("
             FORMAT(
                 l.principal_amount - (
-                    CASE 
+                    CASE
                         WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
                         WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
                     END
@@ -735,19 +735,19 @@ class LoanPostingController extends Controller
     //     $loanQuery = "
     //     SELECT
     //      -- l.id AS loan_id,
-    //       CASE 
+    //       CASE
     //             WHEN lp.entry_type = 'loan_given' THEN 'Loan Given'
     //             WHEN lp.entry_type = 'loan_taken' THEN 'Loan Taken'
     //             ELSE lp.entry_type
     //       END AS Trx_Category,
-    //       CASE 
+    //       CASE
     //         WHEN lp.entry_type = 'loan_given' THEN 'payment'
     //         WHEN lp.entry_type = 'loan_taken' THEN 'received'
     //       END AS trx_type,
     //       lb.party_name,
     //       FORMAT(l.principal_amount, 2) AS principal_amount,
     //       l.term_in_month,
-    //       CASE 
+    //       CASE
     //         WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
     //         WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
     //       END AS amount_bdt,
@@ -775,12 +775,12 @@ class LoanPostingController extends Controller
     //         WHEN lp.entry_type = 'loan_taken'  THEN agg.last_payment_date
     //       END AS last_payment_date,
     //       CASE
-    //     WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+    //     WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
     //         DATE(CONCAT(
     //             DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //             LPAD(l.installment_date, 2, '0')
     //         ))
-    //     WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+    //     WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
     //         DATE(CONCAT(
     //             DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
     //             LPAD(l.installment_date, 2, '0')
@@ -945,17 +945,17 @@ class LoanPostingController extends Controller
         $loanQuery = "
         SELECT
          -- l.id AS loan_id,
-          CASE 
+          CASE
                 WHEN lp.entry_type = 'loan_given' THEN 'Loan Given'
                 WHEN lp.entry_type = 'loan_taken' THEN 'Loan Taken'
                 ELSE lp.entry_type
           END AS Trx_Category,
-          
+
           lb.party_name,
           FORMAT(l.principal_amount, 2) AS principal_amount,
           l.term_in_month,
           FORMAT(
-                CASE 
+                CASE
                     WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
                     WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
                 END, 2
@@ -986,12 +986,12 @@ class LoanPostingController extends Controller
           CASE
         WHEN (
             CASE
-                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
                     ))
-                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
@@ -1002,12 +1002,12 @@ class LoanPostingController extends Controller
         ) > l.loan_start_date
         THEN (
             CASE
-                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_given' AND agg.last_received_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_received_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
                     ))
-                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN 
+                WHEN lp.entry_type = 'loan_taken' AND agg.last_payment_date IS NOT NULL THEN
                     DATE(CONCAT(
                         DATE_FORMAT(DATE_ADD(agg.last_payment_date, INTERVAL 1 MONTH), '%Y-%m-'),
                         LPAD(l.installment_date, 2, '0')
@@ -1018,7 +1018,7 @@ class LoanPostingController extends Controller
         )
         ELSE '--'
         END AS next_due_date,
-                
+
 
                 CASE
             WHEN l.term_in_month > 0 AND CURDATE() > l.loan_start_date THEN
@@ -1035,7 +1035,7 @@ class LoanPostingController extends Controller
                             WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.cnt_payment, 0)
                             ELSE 0
                         END
-                    ), 
+                    ),
                 0)
             ELSE 0
         END AS emi_due_month,
@@ -1047,7 +1047,7 @@ class LoanPostingController extends Controller
                         CASE
                             WHEN lr.interest_rate > 0 THEN
                                 ( l.principal_amount * (lr.interest_rate/12/100) * POW(1 + (lr.interest_rate/12/100), l.term_in_month) )
-                                / ( POW(1 + (lr.interest_rate/12/100), l.term_in_month) - 1 )
+                                / ( POW(1 + (lr.interest_rate/12/100), l.term_in_month) - 1 ) + l.extra_charge
                             ELSE 0
                         END
                     ) *
@@ -1065,17 +1065,17 @@ class LoanPostingController extends Controller
                                     WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.cnt_payment, 0)
                                     ELSE 0
                                 END
-                            ), 
+                            ),
                         0)
                     )
                 , 2)
             ELSE NULL
         END AS emi_due_amount,
-                CASE 
-            WHEN l.term_in_month > 0 THEN 
+                CASE
+            WHEN l.term_in_month > 0 THEN
                 FORMAT(
                     (
-                        CASE 
+                        CASE
                             WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
                             WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
                             ELSE 0
@@ -1099,7 +1099,7 @@ class LoanPostingController extends Controller
                                 WHEN l.term_in_month > 0 AND lr.interest_rate > 0
                                     THEN (
                                         ( l.principal_amount * (lr.interest_rate/12/100) * POW(1 + (lr.interest_rate/12/100), l.term_in_month) )
-                                        / ( POW(1 + (lr.interest_rate/12/100), l.term_in_month) - 1 )
+                                        / ( POW(1 + (lr.interest_rate/12/100), l.term_in_month) - 1 ) + l.extra_charge
                                     )
                                 ELSE 0
                             END
@@ -1111,14 +1111,14 @@ class LoanPostingController extends Controller
         ,
                 FORMAT(
                 l.principal_amount - (
-                    CASE 
+                    CASE
                         WHEN lp.entry_type = 'loan_given' THEN COALESCE(agg.sum_received, 0)
                         WHEN lp.entry_type = 'loan_taken' THEN COALESCE(agg.sum_payment, 0)
                     END
                 ), 2
             ) AS `Payable / Receivable`
 
-                
+
 
 
 
@@ -1189,7 +1189,7 @@ class LoanPostingController extends Controller
             SUM(CASE WHEN lp.entry_type = 'loan_taken' THEN (l.principal_amount + (l.principal_amount * lr.interest_rate / 100)) ELSE 0 END) AS loan_taken,
             SUM(CASE WHEN lp.entry_type = 'loan_received' THEN lp.amount_bdt ELSE 0 END) AS loan_received,
             SUM(CASE WHEN lp.entry_type = 'loan_payment' THEN lp.amount_bdt ELSE 0 END) AS loan_payment,
-            
+
             -- Receivable = loan_given - loan_received
             SUM(CASE WHEN lp.entry_type = 'loan_given' THEN (l.principal_amount + (l.principal_amount * lr.interest_rate / 100)) ELSE 0 END)
             - SUM(CASE WHEN lp.entry_type = 'loan_received' THEN lp.amount_bdt ELSE 0 END) AS receivable,
@@ -1221,13 +1221,13 @@ class LoanPostingController extends Controller
             'data' => $loans,
             'total' => $totalRecords,
             'summary' => $summary[0] ?? [
-                'loan_given' => 0,
-                'loan_taken' => 0,
-                'loan_received' => 0,
-                'loan_payment' => 0,
-                'receivable' => 0,
-                'payable' => 0,
-            ],
+                    'loan_given' => 0,
+                    'loan_taken' => 0,
+                    'loan_received' => 0,
+                    'loan_payment' => 0,
+                    'receivable' => 0,
+                    'payable' => 0,
+                ],
         ]);
     }
 
